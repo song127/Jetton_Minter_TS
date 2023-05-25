@@ -1,7 +1,7 @@
 import { toNano } from 'ton-core';
 import { Jetton } from '../wrappers/Jetton';
 import { compile, sleep } from '@ton-community/blueprint';
-import { RunParameter } from './utils/types';
+import { RunParameter } from './types';
 import { initData } from '../wrappers/Jetton.util';
 
 export async function run(p: RunParameter) {

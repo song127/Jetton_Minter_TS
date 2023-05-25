@@ -4,7 +4,7 @@ import { TonClient, WalletContractV4, Address, Sender, OpenedContract, toNano, f
 import dotenv from 'dotenv';
 import { run as deployRun } from './scripts/deployJetton';
 import { run as walletDeployRun } from './scripts/deployJettonWallet';
-import { RunParameter } from './scripts/utils/types';
+import { RunParameter } from './scripts/types';
 import { Jetton } from './wrappers/Jetton';
 import { parseMetadata } from './wrappers/Jetton.util';
 import { JettonWalletContract } from './wrappers/JettonWallet';

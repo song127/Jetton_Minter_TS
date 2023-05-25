@@ -1,7 +1,7 @@
 import { Address, BitBuilder, BitString, Cell, Dictionary, Slice, beginCell } from 'ton-core';
 
 import { Sha256 } from '@aws-crypto/sha256-js';
-import { JettonMetaDataKeys } from '../scripts/utils/types';
+import { JettonMetaDataKeys } from '../scripts/types';
 
 const ONCHAIN_CONTENT_PREFIX = 0x00;
 const SNAKE_PREFIX = 0x00;
