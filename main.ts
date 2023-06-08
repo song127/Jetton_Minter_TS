@@ -1,10 +1,10 @@
 import { getHttpEndpoint } from '@orbs-network/ton-access';
 import { KeyPair, mnemonicToWalletKey } from 'ton-crypto';
-import { TonClient, WalletContractV4, Address, Sender, OpenedContract, toNano, fromNano, crc32c } from 'ton';
+import { TonClient, WalletContractV4, Address, Sender, OpenedContract, toNano, fromNano } from 'ton';
 import dotenv from 'dotenv';
 import { run as deployRun } from './scripts/deployJetton';
 import { run as walletDeployRun } from './scripts/deployJettonWallet';
-import { RunParameter } from './scripts/types';
+import { RunParameter } from './scripts/utils/types';
 import { Jetton } from './wrappers/Jetton';
 import { parseMetadata } from './wrappers/Jetton.util';
 import { JettonWalletContract } from './wrappers/JettonWallet';
@@ -34,26 +34,25 @@ let deployerJWalletAddress = 'EQBg3APUsPlKPLagAqBYLhz0692l__Mc_UjXbp0OlnxTBOP_';
 let user1JWalletAddress = 'EQCT0Ddfavu3vdLFzo8rMcSouDuw6ct8_RI07Y9jz7LAXx4e'; // sub wallet jetton wallet
 
 async function main() {
-    console.log(crc32c(Buffer.from('0xf8a7ea5')).toString('utf8'));
-    // try {
-    //     await init();
+    try {
+        await init();
 
-    //     // jettonAddress = await deployJetton();
-    //     // await getJettonDatas();
+        // jettonAddress = await deployJetton();
+        // await getJettonDatas();
 
-    //     // deployerJWalletAddress = await getJettonWalletAddress(deployer);
-    //     // user1JWalletAddress = await getJettonWalletAddress(user_1);
+        // deployerJWalletAddress = await getJettonWalletAddress(deployer);
+        // user1JWalletAddress = await getJettonWalletAddress(user_1);
 
-    //     // await mintExecute(user_1);
-    //     // await transferExecute(deployer, user_1, toNano('1'));
-    //     await transferExecute(user_1, deployer, toNano('1'));
-    //     await sleep(1000);
-    //     // await getJettonDatas();
-    //     await getWalletDetails(deployer);
-    //     await getWalletDetails(user_1);
-    // } catch (e) {
-    //     console.error(e);
-    // }
+        // await mintExecute(user_1);
+        // await transferExecute(deployer, user_1, toNano('1'));
+        await transferExecute(user_1, deployer, toNano('1'));
+        await sleep(1000);
+        // await getJettonDatas();
+        await getWalletDetails(deployer);
+        await getWalletDetails(user_1);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 // Actions ------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 import { toNano, Address } from 'ton-core';
 import { compile, sleep } from '@ton-community/blueprint';
-import { RunParameter } from './types';
+import { RunParameter } from './utils/types';
 import { walletInitData } from '../wrappers/Jetton.util';
 import { JettonWalletContract } from '../wrappers/JettonWallet';
 

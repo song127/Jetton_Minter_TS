@@ -1,22 +1,23 @@
-import { toNano } from 'ton-core';
-import { Jetton } from '../wrappers/Jetton';
+import { Address, beginCell, toNano } from 'ton-core';
+import { Minter } from '../wrappers/Minter';
 import { compile, sleep } from '@ton-community/blueprint';
 import { RunParameter } from './utils/types';
-import { initData } from '../wrappers/Jetton.util';
 
 export async function run(p: RunParameter) {
-    const code = await compile('Jetton');
-    const walletCode = await compile('JettonWallet');
-    const jetton = p.provider.open(
-        Jetton.createFromData(
-            initData(p.wallet.address, walletCode),
+    const jettonAddress = '0x';
+    const code = await compile('Minter');
+    const minter = p.provider.open(
+        Minter.createFromData(
+            beginCell()
+            .storeAddress(Address.parse(jettonAddress))
+            .endCell(),
             code,
         )
     );
 
     const seqno = await p.wallet.getSeqno();
 
-    await jetton.sendDeploy(p.sender, toNano('0.05'));
+    await minter.sendDeploy(p.sender, toNano('0.05'));
 
     let currentSeqno = seqno;
     while (currentSeqno == seqno) {
@@ -24,8 +25,8 @@ export async function run(p: RunParameter) {
         await sleep(1500);
         currentSeqno = await p.wallet.getSeqno();
     }
-    console.log('Deploy Address:', jetton.address.toString());
+    console.log('Deploy Address:', minter.address.toString());
     console.log('deploy transaction confirmed!');
 
-    return jetton.address.toString();
+    return minter.address.toString();
 }
