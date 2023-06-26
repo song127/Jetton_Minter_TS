@@ -3,6 +3,7 @@ import { compile, sleep } from '@ton-community/blueprint';
 import { RunParameter } from './utils/types';
 import { walletInitData } from '../wrappers/Jetton.util';
 import { JettonWalletContract } from '../wrappers/JettonWallet';
+import fs from 'fs';
 
 export async function run(p: RunParameter, userAddress: Address, jettonAddress: Address) {
     const code = await compile('JettonWallet');

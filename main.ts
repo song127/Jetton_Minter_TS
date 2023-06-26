@@ -28,28 +28,31 @@ let walletSender: Sender;
 const deployer = 'kQAXKiZjT3geeflmDvkwF9qo52xu2WJXR3yT8mWBQKWXxxgT'; // main wallet == wallet.address
 const user_1 = 'kQBLC7XLVFA0TLxm0bz_0YX12eM3faujd6rEcJTLU7KE9FF9'; // sub wallet
 
-let jettonAddress = 'EQANdjxJrNhwe6Wc6ZeNMF-lHVkMjmulF36SG5rwVCNUbaA_'; // jetton minter address
+let jettonAddress = 'EQDA7CYRmucJrzM_QtZ6jnLeZvSWJkmuoOMs_j5toeXmArF_'; // jetton minter address
 
 let deployerJWalletAddress = 'EQBg3APUsPlKPLagAqBYLhz0692l__Mc_UjXbp0OlnxTBOP_'; // main wallet jetton wallet
 let user1JWalletAddress = 'EQCT0Ddfavu3vdLFzo8rMcSouDuw6ct8_RI07Y9jz7LAXx4e'; // sub wallet jetton wallet
+let custom = 'kQBx90lmbYoFvuk4YJNcb4c_IZ44H6YsoaJNua3t_uHchfY8';
 
 async function main() {
     try {
         await init();
 
         // jettonAddress = await deployJetton();
-        // await getJettonDatas();
+        await getJettonDatas();
 
         // deployerJWalletAddress = await getJettonWalletAddress(deployer);
         // user1JWalletAddress = await getJettonWalletAddress(user_1);
+        // var customAddress = await getJettonWalletAddress(custom);
+        // console.log(customAddress);
 
-        // await mintExecute(user_1);
+        // await mintExecute(customAddress);
         // await transferExecute(deployer, user_1, toNano('1'));
-        await transferExecute(user_1, deployer, toNano('1'));
-        await sleep(1000);
+        // await transferExecute(user_1, deployer, toNano('1'));
+        // await sleep(1000);
         // await getJettonDatas();
-        await getWalletDetails(deployer);
-        await getWalletDetails(user_1);
+        // await getWalletDetails(deployer);
+        // await getWalletDetails(user_1);
     } catch (e) {
         console.error(e);
     }
@@ -67,7 +70,7 @@ async function mintExecute(receiverAddress: string) {
     const jettonToAddress = Address.parse(jettonAddress);
     const jetton = client.open(Jetton.createFromAddress(jettonToAddress));
 
-    await jetton.sendMint(walletSender, { amount: toNano('100'), to: Address.parse(receiverAddress) });
+    await jetton.sendMint(walletSender, { amount: toNano('0.001'), to: Address.parse(receiverAddress) });
 
     await waitForTransaction();
 }

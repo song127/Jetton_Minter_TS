@@ -7,10 +7,10 @@ const ONCHAIN_CONTENT_PREFIX = 0x00;
 const SNAKE_PREFIX = 0x00;
 
 export const jettonParams = {
-    name: 'DeanToken1',
-    symbol: 'DT1',
+    name: 'stTON',
+    symbol: 'STT',
     image: 'https://www.linkpicture.com/q/download_183.png', // Image url
-    description: 'DeanToken1 is a token for Dean', // Description
+    description: 'Test stTON 2', // Description
 };
 
 const jettonOnChainMetadataSpec: {
